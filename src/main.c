@@ -1,4 +1,5 @@
 #include "led.h"
+#include "button.h"
 
 
 static void delay(volatile uint32_t n) {
@@ -7,9 +8,12 @@ static void delay(volatile uint32_t n) {
 
 int main(void) {
     enable_led2();
+    enable_user_button();
 
     while (1) {
-        toggle_led2();
-        delay(2000000);
+        if (check_user_button()) {
+            toggle_led2();
+        }
+        delay(200000);
     }
 }
