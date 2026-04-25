@@ -12,5 +12,8 @@
 // GPIOA registers
 #define GPIOA_MODER (*(volatile uint32_t *)(GPIOA_BASE + 0x00))
 #define GPIOA_ODR   (*(volatile uint32_t *)(GPIOA_BASE + 0x14))
+#define GPIOC_MODER (*(volatile uint32_t *)(GPIOC_BASE + 0x00))
+#define GPIOC_IDR   (*(volatile uint32_t *)(GPIOC_BASE + 0x10))
 
 void enable_io_port_a_clock();
+void enable_io_port_c_clock();
