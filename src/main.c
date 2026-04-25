@@ -11,14 +11,18 @@ static void send_hello();
 int main(void) {
     enable_led2();
     enable_user_button();
-    enable_usart(9600);
+    enable_usart(9600, 1, 1);
 
     send_hello();
     while (1) {
-        if (check_user_button()) {
-            toggle_led2();
-            usart_send_char('O');
+        char c = usart_receive_char();
+        if (c == 'O') {
+            GPIOA_ODR ^= (1U << LED_PIN);  // toggle
         }
+        // if (check_user_button()) {
+        //     toggle_led2();
+        //     usart_send_char('O');
+        // }
         delay(200000);
     }
 }
